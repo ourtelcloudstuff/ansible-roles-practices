@@ -43,17 +43,52 @@ Modules
 
 Inventory
 ---------
+* Inventory is a collection of host (nodes) against wich Ansible can work with.
 * We can define remote hosts by groups using their host names or IPs.
+* We can use static or dynamic sources.
+* You can also create variables in this invetory file.
 
 CMDB
 ----
 * Ansible plays nice witha bunch of different inventory providers: OpenStack, VMware, EC2, Rackspace, GCW, Azure, Spacewalk, Hanlon, Cobbler
 * You can also use custom CMDB.
 
-PLUGINS
+Plugins
 -------
 * Python API.
 * Pluggin support for callback plugins, filter, and other llokup type use cases.
+
+AD-HOC COMMANDS EXAMPLES
+========================
+Here you have some examples about ad-hoc commands:
+
+# Check all my inventory hosts are ready to be managed by Ansible
+$ ansible all -m ping
+
+# Run the uptime command on all hosts in the web group
+$ ansible web -m command -a "uptime"
+
+# Collect and display the discovered for the localhost
+$ ansible localhost -m setup
+
+# Ping all hosts on your inventory with a specific user
+$ ansible all -i <your_inventory_file> -u <user> -m ping
+
+# Installing packages in a specific host group
+# -b scale up to root user 
+$ ansible <host_group> -i <inventory_file> -u <user> -m yum -a "name=<package_name>  state=present" -b
+
+ANSIBLE PLAYBOOKS
+=================
+
+
+
+
+
+
+
+
+
 
 
 
